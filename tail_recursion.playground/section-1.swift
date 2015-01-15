@@ -3,7 +3,7 @@
     Functional Programming Concepts in Swift - Jake Payton
 */
 
-// Plain old recursion
+// Plain old recursion - each time line 12 is hit, it needs to wait for the next iteration of recsum to complete
 
 func recsum( #x: Int ) -> Int {
     if x == 1 {
@@ -15,28 +15,18 @@ func recsum( #x: Int ) -> Int {
 
 recsum(x: 5)
 
-/* compiler did this
+// Tail recursion -  each time line 24 is hit, the only remaining action in the current frame is the result of tailrecsum(), so the frame can be re-used
 
-recsum(x: 5)
-5 + recsum(x: 4)
-5 + ( 4 + recsum(x: 3))
-5 + ( 4 + ( 3 + recsum(x: 2)))
-5 + ( 4 + ( 3 + ( 2 + recsum(x: 1))))
-5 + ( 4 + ( 3 + ( 2 + 1)))
-15
-
-*/
-
-// Tail recursion
-
-func tailrecsum( #x: [Int], _ total: Int = 0) -> Int {
-    if let head = numbers.first {
-        let tail = Array(dropFirst(numbers))
-        return sumRecursively(tail, head + total)
+func tailrecsum( #x: Int, runningCount : Int = 0 ) -> Int {
+    if x == 0 {
+        return runningCount
     } else {
-        return total
+        return tailrecsum(x: x - 1, runningCount: runningCount + x)
     }
 }
 
-let myNumbers = [1,2,3,4,5]
-sumRecursively(myNumbers)
+tailrecsum(x:5)
+
+
+
+
