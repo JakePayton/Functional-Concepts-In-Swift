@@ -32,11 +32,3 @@ println(reversed)
 
 reversed = sorted(names, { $0 > $1 } )
 println(reversed)
-
-// Trailing syntax
-
-
-
-
-
-
