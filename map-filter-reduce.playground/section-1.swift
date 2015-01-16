@@ -89,7 +89,7 @@ getFamilyNames_Imperatively(family)
 /////////////////////////////////////
 
 func getFamilyNames_Functionally(people: [Person]) -> [String] {
-    return people.map { (person: Person) in person.name }
+    return people.map { $0.name }
 }
 
 getFamilyNames_Functionally(family)
